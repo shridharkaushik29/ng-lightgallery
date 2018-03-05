@@ -1,0 +1,25 @@
+{
+  "name": "ng-lightgallery",
+  "authors": [
+    "shridharkaushik29 <shridharkaushik29@gmail.com>"
+  ],
+  "description": "Angular JS wrapper for lightgallery by sachinchoolur",
+  "main": "ng-lightgallery.js",
+  "keywords": [
+    "angular-lightgallery",
+    "lightgallery",
+    "ng-lightlgallery"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lightgallery": "^1.6.7"
+  }
+}
