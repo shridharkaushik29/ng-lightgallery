@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/lodash/lodash.min.js"></script>
+    <script src="../node_modules/lightgallery/dist/js/lightgallery-all.js"></script>
+    <link rel="stylesheet" href="../node_modules/lightgallery/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js"></script>
+    <script src="./main.js"></script>
+    <script>
+
+        angular.module("demo", [
+            'ngLightgallery'
+        ]).controller("demo", [
+            '$scope',
+            '$photoswipe',
+            ($scope, $photoswipe) => {
+
+                $scope.images = [
+                    {
+                        url: "http://glamyi.com/images/individualpost.jpg",
+                        // width: 1024,
+                        // height: 638,
+                    },
+                    {
+                        url: "https://farm3.staticflickr.com/2567/5697107145_3c27ff3cd1_m.jpg",
+                    },
+                    // {
+                    //     url: "https://farm2.staticflickr.com/1043/5186867718_06b2e9e551_m.jpg",
+                    // },
+                ]
+
+                $scope.open = e => $photoswipe.open({
+                    targetEvent: e,
+                    images: $scope.images
+                })
+            }
+        ])
+
+    </script>
+    <title>Title</title>
+</head>
+<body ng-app="demo">
+
+<div ng-controller="demo" photoswipe>
+    <button ng-click="open($event)">Open</button>
+
+    <img view-image="{images: images, current: image}" width="200" ng-repeat="image in images" ng-src="{{image.url}}">
+</div>
+</body>
+</html>
