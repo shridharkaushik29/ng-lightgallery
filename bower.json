@@ -4,7 +4,7 @@
     "shridharkaushik29 <shridharkaushik29@gmail.com>"
   ],
   "description": "Angular JS wrapper for lightgallery by sachinchoolur",
-  "main": "dist/main.js",
+  "main": "dist/ng-lightgallery.min.js",
   "keywords": [
     "angular-lightgallery",
     "lightgallery",

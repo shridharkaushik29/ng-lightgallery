@@ -2,18 +2,13 @@
   "name": "ng-lightgallery",
   "version": "1.0.2",
   "description": "Light Gallery Plugin for AngularJS",
-<<<<<<< HEAD
   "main": "src/index.js",
   "dependencies": {
-    "angular": "^1.7.5",
-    "jquery": "^3.3.1",
     "lightgallery": "^1.6.11",
-    "lodash": "^4.17.11",
     "photoswipe": "~4.1.2"
   },
   "peerDependencies": {
     "angular": "~1.5.x",
-    "jquery": "*",
     "lodash": "~4.17.11"
   },
   "devDependencies": {
@@ -23,26 +18,15 @@
     "typescript": "^3.1.5",
     "webpack": "^4.23.1",
     "webpack-cli": "^3.1.2"
-=======
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
->>>>>>> c43b4a20705dbe71186c2e8a96c01d519729f3c5
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shridharkaushi k29/ng-lightgallery.git"
+    "url": "https://github.com/shridharkaushik29/ng-lightgallery.git"
   },
   "author": "shridharkaushik",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/shridharkaushik29/ng-lightgallery/issues"
   },
-  "homepage": "https://github.com/shridharkaushik29/ng-lightgallery#readme",
-  "dependencies": {
-    "angular": "^1.7.3",
-    "jquery": "^3.3.1",
-    "lightgallery": "^1.6.11",
-    "lodash": "^4.17.10",
-    "photoswipe": "^4.1.2"
-  }
+  "homepage": "https://github.com/shridharkaushik29/ng-lightgallery#readme"
 }
