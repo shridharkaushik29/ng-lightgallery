@@ -2,57 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/angular/angular.js"></script>
-    <script src="../node_modules/lodash/lodash.min.js"></script>
-    <script src="../node_modules/lightgallery/dist/js/lightgallery-all.js"></script>
     <link rel="stylesheet" href="../node_modules/lightgallery/dist/css/lightgallery.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js"></script>
-    <script src="./main.js"></script>
-    <script>
-
-        angular.module("demo", [
-            'ngLightgallery'
-        ]).controller("demo", [
-            '$scope',
-            '$photoswipe',
-            ($scope, $photoswipe) => {
-
-                $scope.images = [
-                    {
-                        url: "http://glamyi.com/images/individualpost.jpg",
-                        // width: 1024,
-                        // height: 638,
-                    },
-                    {
-                        url: "https://farm3.staticflickr.com/2567/5697107145_3c27ff3cd1_m.jpg",
-                    },
-                    // {
-                    //     url: "https://farm2.staticflickr.com/1043/5186867718_06b2e9e551_m.jpg",
-                    // },
-                ]
-
-                $scope.open = e => $photoswipe.open({
-                    targetEvent: e,
-                    images: $scope.images
-                })
-            }
-        ])
-
-    </script>
     <title>Title</title>
 </head>
 <body ng-app="demo">
 
-<div ng-controller="demo" photoswipe>
+<div ng-controller="demo">
     <button ng-click="open($event)">Open</button>
-
     <img view-image="{images: images, current: image}" width="200" ng-repeat="image in images" ng-src="{{image.url}}">
 </div>
 </body>
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/angular/angular.js"></script>
+<script src="../node_modules/lodash/lodash.min.js"></script>
+<script src="../node_modules/lightgallery/dist/js/lightgallery-all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js"></script>
+<script src="./ng-lightgallery.min.js"></script>
+<script>
+
+    angular.module("demo", [
+        'ngLightgallery'
+    ]).controller("demo", [
+        '$scope',
+        '$lightGallery',
+        '$photoswipe',
+        ($scope, $lightGallery, $photoswipe) => {
+
+            $scope.images = [
+                {
+                    url: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw8NDw0NDRAPDQ0NDw0NDQ0NEA8NDQ0NFREYFhcRFRUYHSggGBolGxUVITEhJSkrLi4uIx8zODMsNygtLisBCgoKDg0OFxAQFysdHiAtLS0vLS0tLS0rLS0tLS0tLS0tLS0tLS0rLS0tKystLS0tLS0tLS0tLS0tLSstLS0tK//AABEIAMIBAwMBEQACEQEDEQH/xAAbAAEBAQADAQEAAAAAAAAAAAABAAIDBAUGB//EADkQAAICAQMCBAQDBwIHAQAAAAABAhEDBBIhBTETQVFhBiJxgTKRwSNCobHR4fBichQVFjNDkqIH/8QAGwEBAQADAQEBAAAAAAAAAAAAAAECBAUDBgf/xAArEQEAAgICAgICAgEEAwEAAAAAAQIDEQQhEjEFQRNRIjJxFDNhsRVSgRb/2gAMAwEAAhEDEQA/APAfmd5zFf1/MIrfuBWwG37gVv3GggVsB5Auf8sIv87gQFb9QKwKwKxpdq2EXIBb9wK/qBWxo2L+v5gV/UA5AuQD/O4Fb9WAWwbFv1YA2/8AGwC2AWwOSF1/ckrttrv9WUVAVANBDQFRRUQNBTQFRBUUlUEVAVAVAVFFRBUAUBUAUUVEBRRUANEBQFQBQBRRUAUQZaA5ILgDla5f3CqiioIqAUiCooUiDSQWHpdI6Jn1jl4MflhSlOVqKb8vdmhzfkMXFj+fufqGxhwWydw+kX/57k2pvNFSq2tjav07nI//AEHf+302f9HH/s+e6v0DNpLeTbKCaTnjdqLaTW5d13R1OH8nh5M6jqf1LXzca2Pv3DyqOnDVVA2qAqAqAKIioqqgKgCgCiIqKCgKgCgBoKKCCgKgCgoaA5IR4IOSS5f3KooIaAaAaAqCGgrWODk0l3bSX1Zhkt41m36ZUjdoh+taLNh0mPwcKW2MYVXd2vxfdn5vyeTN8k2t3Mu/XH1EOy+qKl9q7W7r+pr/AJmX43j9VlObi08cl+0nNuMrrbVSh2lFqKXHPBsUzxOpr1MEU17fnvUtOseSSj/25fPifk8b7f0Pv+ByPzYK2+3D5OPwyS6tG414VAVAVAVAVAVAFAVAFAVADQBQFQA0AUAUAUANAFAckFwQcsl3+5VFAKQDQFQDQRUBvHJxaku8WmvqjDLTzpNf2ypbxmJ/T2NJrnldTlJx2SwbLpTjw03XN8V37fU/OOZitx8k013E+30mK3nWLPexzjHHjUeIY62JeSUKiv5HPm29z+3pp5mbq0sc5NStzlGMW2ksMdtX781x6tntir5a+p/7SXi9RzLJP5VUIRjjxr0jH+9s/RPisM4uPWJ9z24HLv5ZZn9OrR0GqaAqAKAqAqAqAKAqAKAqAGgCgCgKgBoAoAoAaAKA5IdiDla7/UqigFIIaAqAaAaAtoVrG3F2nx3r0l6/yOR8n8XXlR5V6tDc43KnH1Pp7Etf+wjz87vjzSTo+O/8ZnnL+OK9uv8A6jH4+Uz08nJPdx5cXdO/avI+l+O+D/FaMmbuY+nN5PO8v40Zo+jc1UBUBUBUAbQKgKgCgKgCgKgCgBoAoCoAaAzQA0BUANAbguAOWS5/MLKoBSAUghoCoBoCoBoDMIyTlct0W04x2xWzimrSt/c864orabb9vW2TyrFf01R6PM0EVAVAVAVAVAFAVAFAVAVAFAFAFAFADQBQBQBQFQGaA5ILgDma7hRQDQDQQpANAVANAVANAFAO0CoCoCoC2gVAVAG0CoAoCoAoCoAaAGgCgMtAVAFADQRloDkguArla7hTQFQDQQ0A0BUA7QKgGgKgKgKgLaBUBUBbQB0uXwvVukSZiPaxWZ9MqcX2af0dibREbZVx2n1BbXqY1yUt6lnfBkp/aswXEzeUiggoCoAoAaAzQBQBQRUANAZaA1FcAdiSDJUA0BUENANANAVANAVANAVAVAVAVAVBdMeBmyyUMKirVvJkTaS/0xX4n/A5PL+Vx4Zmsdy7XG+IvasXyTrb1OlfCM8i3Z92WVN3NqC+y8jjZ/lcVu7Xn/47uOeLxa+NIiZ/ft63TPgvFGH4Ybu97sjd+tnN/wDLXme7Tp4TyMVbbrV2NZ8KxnBJ7fLtKSZsV+WxV7rEw9rc6mSJreNw8TWfB+TBO8Usmx94N+LFfbujZ4/zd5vFZs168bhZdxaNPKyYpwk4Ti4tef7svp7+zPpePy6Zet9uHzvjb8efKP5V/bNG25goAoAoAaCCgooIGgBoDLQG4LgDnaDJUApBDQFQDQDQDQEogW0BoC2gW0C2gVBHa0mljNOeVqGGH45tqKrvVv6HE+Y+QtgiMePu0up8firE/lt9enrdT6tg6bjWSrnkS8HErU8nHdt8qKtHyNMOfmZZ8p/y6ebkWnu0ub4Tnrc9ajVzWGE1uxaXFFJ7X5zbTl9r+voTkUwY/wCGONz+3jE2nuXj9X+M827Lg08J6ZQuLnkjtzy90n+Ffx+h0OJ8dj8Ytb+Tzved6ex8OaCcsOPUZdbl1G6nsx5Z+En6Sb5b9uDV5d6RM0rjiGVI/wCXD8S/HWLTZfBxYp5csJKL33ignddn8z/JDD8ZOSItNtQTk8XJ07VS6lGX/E6PLp+Ljlb+SXPldS/g17nnkieJeJxZNvemadeM+peF1HQywZHB9u8WvOJ918fzK8rDF49/bh8vFGPJMV9OpRvNYNADQQNAFAFBQ0EDQGWgNwXBBztBkqKGgGghSAaAtoDQDQFQDtAtpBJFEkBUB08nWMC1el02eSx6fD+3m58RnqK/Z7vZcs+P5uO+S+XJHc71H+HYwzFa1rLu9f6HDqWX/icWp+aUIqN1kwbUv3XHlc3fc5/H5k8ePx2q97Y/LvbtfC2h1ulnty6uMscZNeDtlmjV+UpU1wefJ5GDJ/WnZWto+30GXS4dXGUM8FOrUZdpx/2vujVw57453WWc1306Gk6DDSOM9PnzwtxUoSeOWPIvSSpfme+bmzlrq9YSKaPxh0SGvcJY6hqsbj4eRvapJc7JNeXo/Jji8ucM6md1S9IlwaDN1Cem1GnyN4dZhh+x1HyZYZ15K3avin58plyRg/LF47rPuCN608Pp71WbSx1OpyLMpZJQhbvLB87oz4Vcx7c+Z9R8VbHXLfHjjXW3O5dZmsTLTR3mhIoDNAVBBQVloAoAoIy0BuC4A7DQZKgHaA7QGghoKqAaAtoRpRv3vil3YXXentf8sx6Xw3rFuyZIuccEZKPC7Jvu2/RHPycq1p1SOvuXvFa0/t26WGoyUs6jicrnFLlceSSXCVnhfHfJ/tXm37eMu1PSxyxg001O6dVw06f8jU/NkpbW008jWY5YKlOnj3OMpr9x3w37HS4nLnJPhZIiUkdCFeFk0Wm1OfP4uNvLicdjk5RjKUEpKNXUlVHxnyF82DPatZ9z/wBuzx4i9I6etn63GMMU8STS+R18sY+nC+5zsPFnLfVp062Dief9unBk63JZN0pqCkoulS9vr5Hrm4Vcdv4xtuf6Slf6xtjF12CyZYvK38zaXzPh8/qdPHgrOOJ8fp67w16+3by9ailhSytcxv8AEjm048zkiJr9p+CI7mOnLoevSnlnKORTjCLfk+Xwv1Pbm8XFWu4rqWOXj4rV3WHp6LrSlxL5ZTkoxd8Py/mc+3Dv4ecemlk4dq18q9unrOnQ0yaxzk4Zc+fMoSfEXJQv/wClKvqfRfA3tkm1pj1EQ4HO6iIdRo+nc2VtIM7QBoAoAoAaAzQA0EaiuAOw1yGR2gSQGtoFtAaAdoDtAqED0ugKKzRnJOWza4xVW8jkox7+l39jU5lpikVj7e+GO9vpOn9GwzUc+bDKeV1JTnum+ya+Vuu8lzXkzRraaRNInpsRjr7nt6k9Nh2xUsMd/bdLBBxiv6GMT4f1nTPxr+n53n1nh5t3iLwnLNJY4/hjG3tSXohqMseMV7adtTPTq9W1+OWlySl82Odr0b+auF9UeOOnhliLpWk76cXSXuwY5JNR+aEb81Gq/g0dzHeLevpL01P+XmfE2NwSyw43OpP3S4/kcb5LjazRliNw6/xN48vGfp8lDqjksuJPZCV0+zT8n+ZqThiLxeHepmpebR6l0cOr28u206fr6G5fj2tTyaeD5CMd/Ge5d/Bqd2Vy7boR9+yr9D34/GrOPuWvzOdaMu4h2c2tbcU0ko43K/tSPDBw4nJ1Lb5PyU1w6mPbqaTVKEX3U8krTXouF+phyONacnjHb14XNxUxTa8a29fo3VZJ7sjuKfh4nLipvu2/RGtyMUzEYq9ft748s5KTaZ/i+whleSONy8oRUb4e3yb933Oz8fxa4MWo++3yHyGWt89vH1CcToNENAFAFAG0DNADQA0BloDcY8ERztBkUgFIBoBoBoBoCoBoo6XW8U56fJHHJwbV/Lw5NfMkvukavKjVYtD0xTMT08zSfHHWNM8mLJlnqJbopSntccVq0m1Hm/0Zz4it516bP5piO4ej/wBf9QltccmLMnjyvJB4oJRkvdU/UtMUVjeTr9PO3InTyYxWLxJJuX7KGNKVPmTv9DyyZ5tGvWmtNpdTqXUpQePFjipJVip/hUn5/wA2Z4Itvy1t7YY3O5l9N0WEo6XTwm7klOcmlX4pfKv/AFUTo8aJ1MyZ53OnNq9LHNCeOf4Zpxdd17r3Pe9IvE1ljiyWx38qy/Kev9OyaXNLHkXbmE12yQ8pL9V5M5c4vx7rLq35P5tXr7ec8vn68S/qZxPjXX08bX8rb9Ozps9OHPqn+a/uZ3yVrrxYTu0zt2dbn5aT5ajFHpfLWJiK+2MeVo/k4HkuVLslV+SS7svUX3XuWc5bTTxtPT6L4T6ZLUzWaaa02J/Kn2yTT7fny/y9TDHx/O3nZnk5k1p4V6h93Rvf4ctUVBtAKAKAy0ANADQA0BloI1FBXYa7kZFIIVEBoBoCoBoBUQHaWBmUE00+z4MLVi0TErG47Z6fhhJZNJmTccjjJq9tyi04STXbn5fujiZsc0tqW9XWSupfPdV0GPTarPixR2wblOHLfyZMan5+7aPO2W1oiJ+mlmjxvMOhrtSoW26UZSm747fKv5GFe5iHl7nUPO+HenS12ec5tywwyKX+h13S9ff+50aY5/pE7b3VKx0/RYwpJLyOlWvjGmpM7k7So8/rfR8etxPFkVNW8eRfixy9V7eqMb0i0M6Xms9PyXrvSs2hyPHmVXeyStwyRX70X/lHKy0tSdS3qWi0dOngyV/nmeMzvpm5c+Zybk+H7djLfezT3PhP4dnrn4k7hpYv559pZWv/ABw/V+RtcfHN539PHNeK9R7fp2DTxxxjjxxUIQSjGK4SS8joRGvTTmZlybSoKCCgMtADQBQGaA1HHYVOANOKUSwxmDFcEV2WgySQGqAVEIaAqAaAaAqAaA4dRhckpR4nHmL7X7Gvnwxkr/y9Md/GXwXV/irJnzub03hTwrwZwnJubcW+6S47nJnDO21fFS/cy6Wnhk6lljp1BwUnunK24xxxfL/Q9cGLczGu3l+GMc+e36RoNDDT4448apJcvzb9Tq46RWHhe3lLs0ejBUAUB1Oq9Lw6zFLDnjuhLs+0oS8pRfkzC+Ot41LKtprO4flPXeiZum5FCTj4ct0sOZbo7lVNPjiVVx/U5eTHbFuP26FMkXjf27Hwl0N9Qnsm2tNi2vNtbW522ofVty58lZcGL8ltz6Y5snjHT9Uw4I44Rx44qEIJRjGKqMYryR1YiI6hozue5borEUANADiAUAOIA0BlxAYugN19zHTKHFkiZQkhII7DRGRSAaAUihoIaAaIGgKgGgKgPlviz4WhrJ488J+Fkvbl44ywrh/7l2v0NLk45nU19tnBb3E+nr9A6Lj0OJYofNN/Nly/vZJf0XkjYw4/Cuvt5ZL+UvTo9XmqAKAtoRUFdPquhx6jFPHlUJR4mt7SqS84+svRefY1+VNYxzNntgiZt/FwfD/TsWlwRx4YuO5uc1JVPxH3TXt2+w4s1mkTSdnI8vLVno0bLwTQBQA0AUANADQGWgBoAaAlwRYWRCCWYoqOy4kZJRA1Q2GhsKiNhSAdoFRENAVAO0Dg1WLJKvCljg1ak8uLxnTX7vK2v3PDPg/LrvWnvhzfj31vbn2nvHp4zO52dpUFEFQFRRUBwanT+Js7VCcZuLtbkr+W125rk1+Tx4z08Ze2HNOK3lDi6bpcmLGo5s0tTktuWWUIY7folHyHH49cNfGpmzWyzuXao2HiKKgoKKAqIjLiAUANAFBQ4gZcQBoDUYhHYaJtkkgGgGgFIDVFFRA0A0EVAVANAVAVAVAVAW0oqIChsFDYqGwUNiobBQGWgCigoAoAaAy0AUANAMUEdhoxZmghoBSCtJBFRNhooaAaAqAtoFQDQFQRUBbRsVDYqAKAqAKAHEAoAcSgcQBoAoAobGWhsFDYtpNqtiG100l7EHNtJsVF2FRAdoCojYUgFIBUQKghoCoB2gW0C2gW0bFtAKAqCBxAqAKCraNmhtGzS8Nja6Xhk2aXhDZoPGTyk0tiGzTLiiqy0gjLKMMIYgdraYstLaUKiNppUNro0QVDaNUNhooqKGgKgiobVUNioCoCobRbRtdHaTZobBs0to2aW0bFSIqtIaTa3jS7YcxpNhsuk2wxoZYAyjLQA0BmgNRQHqvE2+Wvoka8XbM1XgL2+485TxZnBL0MosxmrhaM2CURsNFTR2g0qGzRouzSomzR2hNKhtdKgaVA0qBpUE0qAqAKAKKKiA2jYNo2JxGxmhsDQ2gaLsZaJsDQ2BobGdo2MtDY0ojY9drsasNuV/QQkuPKZwxs46PV5JIBoqGiBSCtTSAzQRUA0UVEFRQtATQBREVAFFFQBRRUQDQGWgJoDLQA0QZaAGijLQQNAZaCmKA//9k=",
+                    // width: 1024,
+                    // height: 638,
+                },
+                {
+                    url: "https://farm3.staticflickr.com/2567/5697107145_3c27ff3cd1_m.jpg",
+                },
+                {
+                    url: "https://farm2.staticflickr.com/1043/5186867718_06b2e9e551_m.jpg",
+                },
+            ]
+
+            $scope.open = e => $photoswipe.open({
+                targetEvent: e,
+                images: $scope.images
+            })
+        }
+    ])
+
+</script>
 </html>

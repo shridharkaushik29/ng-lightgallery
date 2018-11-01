@@ -3,8 +3,25 @@
   "version": "1.0.0",
   "description": "Light Gallery Plugin for AngularJS",
   "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "dependencies": {
+    "angular": "^1.7.5",
+    "jquery": "^3.3.1",
+    "lightgallery": "^1.6.11",
+    "lodash": "^4.17.11",
+    "photoswipe": "~4.1.2"
+  },
+  "peerDependencies": {
+    "angular": "~1.5.x",
+    "jquery": "*",
+    "lodash": "~4.17.11"
+  },
+  "devDependencies": {
+    "@types/angular": "^1.6.51",
+    "@types/jquery": "^3.3.22",
+    "@types/lodash": "^4.14.117",
+    "typescript": "^3.1.5",
+    "webpack": "^4.23.1",
+    "webpack-cli": "^3.1.2"
   },
   "repository": {
     "type": "git",
