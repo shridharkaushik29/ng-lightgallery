@@ -1,55 +1,7 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require("lodash");
 var angular = require("angular");
-var LightGalleryService = /** @class */ (function () {
-    function LightGalleryService() {
-    }
-    LightGalleryService.prototype.open = function (options) {
-        var images = options.images;
-        var currentImage = options.currentImage || options.current;
-        var container = options.container || "body";
-        var index = options.index;
-        if (!index && index !== 0 && currentImage) {
-            index = _.indexOf(images, currentImage);
-        }
-        else {
-            index = 0;
-        }
-        var $images = _(images).map(function (image) {
-            var img = {};
-            if (_.isString(image)) {
-                img.src = image;
-                img.thumb = image;
-            }
-            else if (_.isObject(image)) {
-                img.src = image.url || image.src;
-                img.thumb = image.thumb || img.src;
-            }
-            return img;
-        }).value();
-        var $lg = angular.element(container);
-        var lgopt = __assign({}, options.lgoptions, { dynamic: true, index: index || 0, dynamicEl: $images });
-        if ($images.length) {
-            $lg.lightGallery(lgopt);
-            $lg.one("onCloseAfter.lg", function () {
-                $lg.data('lightGallery').destroy(true);
-            });
-        }
-    };
-    return LightGalleryService;
-}());
 var PhotoSwipeService = /** @class */ (function () {
     function PhotoSwipeService() {
     }
@@ -114,80 +66,5 @@ var PhotoSwipeService = /** @class */ (function () {
     };
     return PhotoSwipeService;
 }());
-angular.module("ngLightgallery", [])
-    .service("$lightGallery", LightGalleryService)
-    .service("$photoswipe", PhotoSwipeService)
-    .directive("viewImage", [
-    '$lightGallery',
-    '$photoswipe',
-    function ($lightGallery, $photoswipe) {
-        return {
-            restrict: "A",
-            require: {
-                photoswipe: "?^^"
-            },
-            link: function ($scope, element, attrs, ctrls) {
-                var gallery;
-                var photoswipe = ctrls.photoswipe;
-                if (photoswipe) {
-                    photoswipe.addImage(element[0]);
-                }
-                element.on("click", function (e) {
-                    var options;
-                    if (photoswipe) {
-                        options = $scope.$eval(attrs.viewImage) || {};
-                        if (!options.images && element.attr('src')) {
-                            options.images = [element.attr('src')];
-                            options.index = 0;
-                        }
-                        options.photoswipeOptions = {};
-                        options.photoswipeOptions.getThumbBoundsFn = function (index) {
-                            var thumbnail = photoswipe.images()[index], // find thumbnail
-                            pageYScroll = window.pageYOffset || document.documentElement.scrollTop, rect = thumbnail.getBoundingClientRect();
-                            return { x: rect.left, y: rect.top + pageYScroll, w: rect.width };
-                        };
-                        $scope.$apply(function () {
-                            gallery = $photoswipe.open(options);
-                        });
-                    }
-                    else {
-                        options = $scope.$eval(attrs.viewImage) || {};
-                        if (!options.images && element.attr('src')) {
-                            options.images = [element.attr('src')];
-                            options.index = 0;
-                        }
-                        $scope.$apply(function () {
-                            gallery = $lightGallery.open(options);
-                        });
-                    }
-                });
-                element.on('$destroy', function () {
-                    if (photoswipe) {
-                        photoswipe.removeImage(element[0]);
-                    }
-                    if (gallery && gallery.data('lightGallery')) {
-                        gallery.data('lightGallery').destroy(true);
-                    }
-                });
-            }
-        };
-    }
-])
-    .directive("photoswipe", [
-    '$photoswipe',
-    function ($photoswipe) {
-        return {
-            controller: [
-                '$scope',
-                function ($scope) {
-                    var _this = this;
-                    this._images = [];
-                    this.images = function () { return _this._images; };
-                    this.addImage = function (image) { return _this._images.push(image); };
-                    this.removeImage = function (image) { return _.remove(_this._images, image); };
-                }
-            ]
-        };
-    }
-]);
-//# sourceMappingURL=index.js.map
+exports.default = PhotoSwipeService;
+//# sourceMappingURL=PhotoSwipeService.js.map

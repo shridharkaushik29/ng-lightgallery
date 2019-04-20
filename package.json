@@ -3,15 +3,22 @@
   "version": "1.0.3",
   "description": "Light Gallery Plugin for AngularJS",
   "main": "src/index.js",
+  "scripts": {
+    "watch": "tsc --watch",
+    "dev": "webpack --env.mode=development --watch",
+    "prod": "webpack --env.mode=production --watch"
+  },
   "dependencies": {
-    "lightgallery": "^1.6.11",
+    "lightgallery": "^1.6.12",
     "photoswipe": "~4.1.2"
   },
   "peerDependencies": {
-    "angular": "~1.5.x",
+    "angular": "^1.7.8",
     "lodash": "~4.17.11"
   },
   "devDependencies": {
+    "angular": "^1.7.8",
+    "lodash": "^4.17.11",
     "@types/angular": "^1.6.51",
     "@types/jquery": "^3.3.22",
     "@types/lodash": "^4.14.117",

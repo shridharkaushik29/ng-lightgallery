@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+src
+.idea
+tsconfig.json
+yarn.lock
+bower.json
+yarn-error.log
+webpack.config.js

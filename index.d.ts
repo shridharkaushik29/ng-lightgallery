@@ -3,4 +3,5 @@ declare global {
         lightGallery(options: any): this;
     }
 }
-export {};
+declare const _default: string;
+export default _default;
