@@ -20,6 +20,8 @@
     "tests"
   ],
   "dependencies": {
+    "angular": "*",
+    "lodash": "*",
     "lightgallery": "^1.6.7"
   }
 }
