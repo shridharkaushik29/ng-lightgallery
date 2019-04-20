@@ -1,6 +1,6 @@
 {
   "name": "ng-lightgallery",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Light Gallery Plugin for AngularJS",
   "main": "src/index.js",
   "scripts": {
